@@ -8,7 +8,7 @@ namespace HooneteProjektSamrjakov
     {
         public static void Main()
         {
-
+            EraMaja MaaMaja = new EraMaja("Vatslanurme 25", 100, , true);
         }
     }
 }
