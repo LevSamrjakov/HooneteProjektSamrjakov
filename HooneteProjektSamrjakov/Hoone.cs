@@ -6,31 +6,51 @@ namespace HooneteProjektSamrjakov
 {
     public abstract class Hoone
     {
+        public static int ParinguteArv = 0;
+
         public string Aadress { get; set; }
+
         public int Pindala { get; set; }
+
         public Uks MajaUks { get; set; }
 
-        public Hoone(string aadress, int pindala, Uks majaUks)
+        public EnergiaKlass Energiaklass { get; set; }
+
+        public Hoone(string aadress, int pindala, Uks majaUks, EnergiaKlass energiaklass)
         {
             Aadress = aadress;
             Pindala = pindala;
-            MajaUks = majaUks;
+            MajaUks = majaUks ?? throw new ArgumentNullException(nameof(majaUks));
+            Energiaklass = energiaklass;
         }
 
-        public void InfoParing()
+        public virtual void InfoParing()
         {
-            if(MajaUks.OnLukus)
+            ParinguteArv++;
+
+            if (MajaUks.OnLukus)
             {
                 throw new UnauthorizedAccessException("Juurdepääs keelatud! Uks on lukus.");
             }
-            else
-            {
-                Console.WriteLine($"Aadress on: {Aadress}");
-                Console.WriteLine($"Pindala on: {Pindala}");
-                Console.WriteLine($"Ülalpidamiskulu on: {Ülalpidamiskulu()} €");
-            }
+
+            Console.WriteLine($"Aadress: {Aadress}");
+            Console.WriteLine($"Pindala: {Pindala} m²");
+            Console.WriteLine($"Energiaklass: {Energiaklass}");
+            Console.WriteLine($"Ülalpidamiskulu: {ArvutaYlalpidamiskulu()} eurot");
         }
 
-        public abstract double Ülalpidamiskulu();
+        protected double RakendaEnergiaKordaja(double summa)
+        {
+            return Energiaklass switch
+            {
+                EnergiaKlass.A => summa * 0.8,
+                EnergiaKlass.B => summa * 0.9,
+                EnergiaKlass.C => summa,
+                EnergiaKlass.D => summa * 1.2,
+                _ => summa
+            };
+        }
+
+        public abstract double ArvutaYlalpidamiskulu();
     }
 }

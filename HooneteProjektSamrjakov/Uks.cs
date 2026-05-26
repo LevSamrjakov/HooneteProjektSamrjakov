@@ -7,13 +7,14 @@ namespace HooneteProjektSamrjakov
     public class Uks : ILukustatav
     {
         private bool _onLukus = true;
-        public string Värv { get; set; }
+
+        public string Varv { get; set; }
 
         public bool OnLukus => _onLukus;
 
-        public Uks(string värv)
+        public Uks(string varv)
         {
-            Värv = värv;
+            Varv = varv;
         }
 
         public void Lukusta()
@@ -25,7 +26,7 @@ namespace HooneteProjektSamrjakov
         public void Ava()
         {
             _onLukus = false;
-            Console.WriteLine("Uks on avatud");
+            Console.WriteLine("Uks on avatud.");
         }
     }
 }

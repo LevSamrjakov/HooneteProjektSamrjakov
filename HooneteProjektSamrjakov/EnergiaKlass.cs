@@ -4,10 +4,11 @@ using System.Text;
 
 namespace HooneteProjektSamrjakov
 {
-    public interface ILukustatav
+    public enum EnergiaKlass
     {
-        bool OnLukus { get; }
-        void Lukusta();
-        void Ava();
+        A,
+        B,
+        C,
+        D
     }
 }

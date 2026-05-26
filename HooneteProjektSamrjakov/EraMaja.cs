@@ -6,21 +6,23 @@ namespace HooneteProjektSamrjakov
 {
     public class EraMaja : Hoone
     {
-        public bool OnElektriautoLaadija;
+        public bool OnElektriautoLaadija { get; set; }
 
-        public EraMaja(string aadress, int pindala, Uks majaUks, bool laadija) : base(aadress, pindala, majaUks)
+        public EraMaja(string aadress, int pindala, Uks majaUks, bool laadija, EnergiaKlass energiaklass) : base(aadress, pindala, majaUks, energiaklass)
         {
             OnElektriautoLaadija = laadija;
         }
 
-        public override double Ülalpidamiskulu()
+        public override double ArvutaYlalpidamiskulu()
         {
             double kulu = Pindala * 12.5;
+
             if (OnElektriautoLaadija)
             {
                 kulu += 600;
             }
-            return kulu;
+
+            return RakendaEnergiaKordaja(kulu);
         }
     }
 }
