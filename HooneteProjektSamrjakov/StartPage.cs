@@ -86,6 +86,8 @@ namespace HooneteProjektSamrjakov
             }
 
             Console.WriteLine($"Päringuid kokku: {Hoone.ParinguteArv}");
+
+            //Saving
         }
     }
 }
